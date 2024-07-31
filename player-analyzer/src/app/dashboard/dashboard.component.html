@@ -1,0 +1,17 @@
+<section>
+  <div>
+    <h1>Fantasy Football Analysis Wizard</h1>
+  </div>
+  <div *ngIf="foobar.length > 0; else noPlayers">
+    <ul>
+      <li *ngFor="let player of foobar">
+        {{ player.first_name }} - {{ player.last_name }} - {{ player.position }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noPlayers>
+    <p>No players available.</p>
+  </ng-template>
+
+
+</section>
