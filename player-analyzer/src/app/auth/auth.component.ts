@@ -1,5 +1,5 @@
-import {Component} from '@angular/core'
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms'
+import {Component, OnInit} from '@angular/core'
+import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms'
 import {SupabaseService} from '../supabase.service'
 
 @Component({
@@ -11,36 +11,43 @@ import {SupabaseService} from '../supabase.service'
   ],
   standalone: true
 })
-export class AuthComponent {
 
-  private readonly supabaseService: SupabaseService = new SupabaseService()
-  private readonly formBuilder: FormBuilder = new FormBuilder()
 
+export class AuthComponent implements OnInit{
+  signInForm! : FormGroup;
   loading = false
 
-  signInForm = this.formBuilder.group({
-    email: '',
-  })
+  constructor(
+    private supabaseService: SupabaseService,
+    private formBuilder: FormBuilder
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.signInForm = this.formBuilder.group({
+      email: '',
+    })
+  }
 
   async onSubmit(): Promise<void> {
-
     try {
       this.loading = true
       const email = this.signInForm.value.email as string
-      const {error} = await this.supabaseService.signIn(email)
+      const signInResponse = await this.supabaseService.signIn(email)
 
-      if (error) {
-        throw error
+      //if the response has an error, throw error
+      if (signInResponse.error) {
+        throw signInResponse.error
       }
 
       alert('Check your email for the login link!')
     } catch (error) {
 
+      //if the error was an error, alert the user
       if (error instanceof Error) {
         alert(error.message)
       }
     } finally {
-
       this.signInForm.reset()
       this.loading = false
     }

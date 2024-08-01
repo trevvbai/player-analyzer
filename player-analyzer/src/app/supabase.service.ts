@@ -17,12 +17,33 @@ export interface Profile {
 }
 
 export interface Player {
-  age: number;
+  active: boolean | null
+  age: number | null
+  college: string | null
+  experience: number | null
   first_name: string
+  height: string | null
+  height_feet: number | null
+  height_inches: number | null
   id: number
   last_name: string
-  position: string
-  team_id: number | null
+  long_name: string | null
+  number: number | null
+  position: string | null
+  short_name: string | null
+  sportsdata_player_id: number | null
+  sportsdata_team_id: number | null
+  status: string | null
+  usa_today_headshot_link: string | null
+  usa_today_headshot_link_nobg: string | null
+  usa_today_player_id: number | null
+  weight: string | null
+  espn_id: number | null
+  espn_headshot: string | null
+}
+
+export interface PlayerListRes{
+  body: Player
 }
 
 @Injectable({
@@ -80,18 +101,31 @@ export class SupabaseService {
     return this.supabaseClient.storage.from('avatars').upload(filePath, file)
   }
 
-
   async getTableData(tableName: string): Promise<Player[]>{
-
-    var foo = await this.supabaseClient
-      .from('players')
+    let supaClientRes = await this.supabaseClient
+      .from(tableName)
       .select('*');
 
-    if (foo.error){
-      console.log(foo.error)
+    if (supaClientRes.error){
+      console.log(supaClientRes.error)
       return [];
     }
 
-    return foo.data || []
+    return supaClientRes.data || []
+  }
+
+  async getOffensivePlayers(): Promise<Player[]>{
+    let supaClientRes = await this.supabaseClient
+      .from('players')
+      .select('*')
+      .in('position', ["RB", "WR", "QB", "TE"])
+    ;
+
+    if (supaClientRes.error){
+      console.log(supaClientRes.error)
+      return [];
+    }
+
+    return supaClientRes.data || []
   }
 }

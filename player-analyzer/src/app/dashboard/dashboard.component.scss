@@ -1,0 +1,19 @@
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: floralwhite;
+  background-color: rgb(255, 250, 240, 0.05);
+  transition: background-color 0.3s ease; /* Smooth transition */
+
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%
+}
+table th{
+  color: floralwhite;
+}
+
+table td {
+  color: floralwhite;
+}
