@@ -6,6 +6,8 @@ import {AccountComponent} from "./account/account.component";
 import {AuthComponent} from "./auth/auth.component";
 import {CommonModule} from "@angular/common";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {environment} from "../../environment";
+import {Environment} from "@angular/cli/lib/config/workspace-schema";
 
 @Component({
   selector: 'app-root',
@@ -23,4 +25,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.supabaseService.authChanges((_, session) => (this.session = session))
   }
+
+    protected readonly environment = environment;
+  protected readonly Environment = Environment;
 }
