@@ -7,7 +7,7 @@ import {
   SupabaseClient,
   User,
 } from '@supabase/supabase-js'
-import {environment} from "../../environment";
+import {environment} from "../environments/environment";
 
 export interface Profile {
   id?: string
@@ -127,5 +127,20 @@ export class SupabaseService {
     }
 
     return supaClientRes.data || []
+  }
+
+  async getIndividualPlayer(id: number): Promise<Player | null>{
+    let supaClientRes = await this.supabaseClient
+      .from('players')
+      .select('*')
+      .eq('id', id)
+    ;
+
+    if (supaClientRes.error){
+      console.log(supaClientRes.error)
+      return null;
+    }
+
+    return supaClientRes.data[0] || null
   }
 }

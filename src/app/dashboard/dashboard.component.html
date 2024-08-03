@@ -1,6 +1,6 @@
-<section>
+<section *ngIf="session; else auth">
   <div style="margin-bottom: 5%">
-    <h1>FANTASY FOOTBALLPEDIA</h1>
+    <h1>Scout Wizard</h1>
   </div>
 
   <div style="width : 75%; margin-right: auto; margin-left: auto">
@@ -23,8 +23,9 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row
-          (click)="null"
-          *matRowDef="let row; columns: displayedColumns;">
+          *matRowDef="let row; columns: displayedColumns;"
+          (click)="navigateToPlayerDetails(row)"
+      >
       </tr>
     </table>
 
@@ -46,5 +47,9 @@
 
 
 </section>
+
+<ng-template #auth>
+  <app-auth></app-auth>
+</ng-template>
 
 

@@ -1,0 +1,40 @@
+<section>
+  <h1 class="font-bold mb-5 text-2xl">Player Details</h1>
+
+  <mat-card appearance="outlined">
+    <mat-grid-list cols="4">
+      <mat-grid-tile
+        [colspan]="1"
+
+      >
+        <mat-card-header>
+          <mat-card-title style="font-weight: bold !important;">{{player?.long_name}}</mat-card-title>
+          <mat-card-subtitle>
+            {{player?.position}} - #{{player?.age}}
+            <div>{{player?.height}} &nbsp; {{player?.weight}} lbs</div>
+          </mat-card-subtitle>
+
+        </mat-card-header>
+
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="2"
+      >
+        <img mat-card-avatar src="{{player?.espn_headshot}}" class="h-52">
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+
+    <mat-card-content>
+    </mat-card-content>
+
+
+    <mat-card appearance="outlined">
+      <mat-card-content>Insert stats here</mat-card-content>
+    </mat-card>
+
+  </mat-card>
+
+  <button class="mt-20" (click)="navigateHome()">Back</button>
+</section>

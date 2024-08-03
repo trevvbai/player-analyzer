@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit{
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
-      email: '',
+      email: ''
     })
   }
 
