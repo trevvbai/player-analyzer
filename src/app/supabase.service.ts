@@ -114,6 +114,21 @@ export class SupabaseService {
     return supaClientRes.data || []
   }
 
+  async getPlayerByPosition(position: string): Promise<Player[]>{
+    let supaClientRes = await this.supabaseClient
+      .from('players')
+      .select('*')
+      .in('position', [position])
+    ;
+
+    if (supaClientRes.error){
+      console.log(supaClientRes.error)
+      return [];
+    }
+
+    return supaClientRes.data || []
+  }
+
   async getOffensivePlayers(): Promise<Player[]>{
     let supaClientRes = await this.supabaseClient
       .from('players')

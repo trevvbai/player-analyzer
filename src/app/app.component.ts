@@ -4,14 +4,14 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import {SupabaseService} from "./supabase.service";
 import {AccountComponent} from "./account/account.component";
 import {AuthComponent} from "./auth/auth.component";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterModule, AccountComponent, AuthComponent, CommonModule, DashboardComponent],
+  imports: [HomeComponent, RouterModule, AccountComponent, AuthComponent, CommonModule, DashboardComponent, NgOptimizedImage],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

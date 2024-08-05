@@ -4,8 +4,12 @@
   <mat-card appearance="outlined" class="playerCard">
     <mat-grid-list cols="4">
       <mat-grid-tile
-        [colspan]="1"
-
+        [colspan]="2"
+      >
+        <img mat-card-avatar src="{{player?.espn_headshot}}" class="h-52">
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="2"
       >
         <mat-card-header>
           <mat-card-title style="font-weight: bold !important;">{{player?.long_name}}</mat-card-title>
@@ -17,11 +21,7 @@
         </mat-card-header>
 
       </mat-grid-tile>
-      <mat-grid-tile
-        [colspan]="2"
-      >
-        <img mat-card-avatar src="{{player?.espn_headshot}}" class="h-52">
-      </mat-grid-tile>
+
 
     </mat-grid-list>
 

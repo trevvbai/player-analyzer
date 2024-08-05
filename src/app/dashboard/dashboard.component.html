@@ -1,55 +1,164 @@
 <section *ngIf="session; else auth">
-  <div style="margin-bottom: 5%">
-    <h1>Scout Wizard</h1>
-  </div>
 
-  <div style="width : 75%; margin-right: auto; margin-left: auto">
-    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8" style="width: 75%">
+	<div class="mb-5">placeholder section for top 10 player scores</div>
 
-      <ng-container matColumnDef="espn_headshot">
-        <th mat-header-cell *matHeaderCellDef ></th>
-        <td mat-cell *matCellDef="let player"><img src="{{player.espn_headshot}}" style="max-height:60px"></td>
-      </ng-container>
+	<mat-grid-list cols="2" gutterSize="3%">
 
-      <ng-container matColumnDef="long_name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by Name'">Name</th>
-        <td mat-cell *matCellDef="let player">{{ player.long_name }}</td>
-      </ng-container>
+<!--		running backs -->
+		<mat-grid-tile class="rounded-md shadow-purple-800 shadow-md">
+			<mat-card class="overflow-auto h-full w-full scrollbar-thin">
+				<mat-card-header>
+					<mat-card-title>Running Backs</mat-card-title>
+				</mat-card-header>
 
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
-        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-      </ng-container>
+				<mat-card-content>
+					<table mat-table matSort [dataSource]="rbDataSource">
+						<ng-container matColumnDef="espn_headshot">
+							<th mat-header-cell *matHeaderCellDef></th>
+							<td mat-cell *matCellDef="let player"><img src="{{player.espn_headshot}}" style="max-height:60px"></td>
+						</ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row
-          *matRowDef="let row; columns: displayedColumns;"
-          (click)="navigateToPlayerDetails(row)"
-      >
-      </tr>
-    </table>
+						<ng-container matColumnDef="long_name">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by Name'">Name</th>
+							<td mat-cell *matCellDef="let player">{{ player.long_name }}</td>
+						</ng-container>
 
-  </div>
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row
+								*matRowDef="let row; columns: displayedColumns;"
+								(click)="navigateToPlayerDetails(row)"
+						>
+						</tr>
+					</table>
+
+					<mat-paginator
+						[pageSize]="10"
+						[pageSizeOptions]="[5,10,20]"
+					>
+					</mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-grid-tile>
+
+<!--	Wide Receivers		-->
+		<mat-grid-tile class="rounded-md">
+			<mat-card class="overflow-auto h-full w-full scrollbar-thin">
+				<mat-card-header>
+					<mat-card-title>Wide Receivers</mat-card-title>
+				</mat-card-header>
+
+				<mat-card-content>
+					<table mat-table matSort [dataSource]="wrDataSource">
+						<ng-container matColumnDef="espn_headshot">
+							<th mat-header-cell *matHeaderCellDef></th>
+							<td mat-cell *matCellDef="let player"><img src="{{player.espn_headshot}}" style="max-height:60px"></td>
+						</ng-container>
+
+						<ng-container matColumnDef="long_name">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by Name'">Name</th>
+							<td mat-cell *matCellDef="let player">{{ player.long_name }}</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row
+								*matRowDef="let row; columns: displayedColumns;"
+								(click)="navigateToPlayerDetails(row)"
+						>
+						</tr>
+					</table>
+
+					<mat-paginator
+						[pageSize]="10"
+						[pageSizeOptions]="[5,10,20]"
+					>
+					</mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-grid-tile>
+
+<!--		quarter backs-->
+		<mat-grid-tile class="rounded-md">
+			<mat-card class="overflow-auto h-full w-full scrollbar-thin">
+				<mat-card-header>
+					<mat-card-title>Quarterbacks</mat-card-title>
+				</mat-card-header>
+
+				<mat-card-content>
+					<table mat-table matSort [dataSource]="qbDataSource">
+						<ng-container matColumnDef="espn_headshot">
+							<th mat-header-cell *matHeaderCellDef ></th>
+							<td mat-cell *matCellDef="let player"><img src="{{player.espn_headshot}}" style="max-height:60px"></td>
+						</ng-container>
+
+						<ng-container matColumnDef="long_name">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by Name'">Name</th>
+							<td mat-cell *matCellDef="let player">{{ player.long_name }}</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row
+								*matRowDef="let row; columns: displayedColumns;"
+								(click)="navigateToPlayerDetails(row)"
+						>
+						</tr>
+					</table>
+
+					<mat-paginator
+						[pageSize]="10"
+						[pageSizeOptions]="[5,10,20]"
+					>
+					</mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-grid-tile>
+
+<!--		tight ends-->
+		<mat-grid-tile class="rounded-md">
+			<mat-card class="overflow-auto h-full w-full scrollbar-thin">
+				<mat-card-header>
+					<mat-card-title>Tight Ends</mat-card-title>
+				</mat-card-header>
+
+				<mat-card-content>
+					<table mat-table matSort [dataSource]="teDataSource">
+						<ng-container matColumnDef="espn_headshot">
+							<th mat-header-cell *matHeaderCellDef ></th>
+							<td mat-cell *matCellDef="let player"><img src="{{player.espn_headshot}}" style="max-height:60px"></td>
+						</ng-container>
+
+						<ng-container matColumnDef="long_name">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by Name'">Name</th>
+							<td mat-cell *matCellDef="let player">{{ player.long_name }}</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row
+								*matRowDef="let row; columns: displayedColumns;"
+								(click)="navigateToPlayerDetails(row)"
+						>
+						</tr>
+					</table>
+
+					<mat-paginator
+						[pageSize]="10"
+						[pageSizeOptions]="[5,10,20]"
+					>
+					</mat-paginator>
+				</mat-card-content>
+			</mat-card>
+		</mat-grid-tile>
+	</mat-grid-list>
 
 
-  <mat-paginator
-    [pageSize]="50"
-    showFirstLastButtons
-    [pageSizeOptions]="[25,50,100,500]"
-  >
-  </mat-paginator>
-
-
-
-  <ng-template #noPlayers>
-    <p>Sorry! No players available to display</p>
-  </ng-template>
+	<ng-template #noPlayers>
+		<p>Sorry! No players available to display</p>
+	</ng-template>
 
 
 </section>
 
 <ng-template #auth>
-  <app-auth></app-auth>
+	<app-auth></app-auth>
 </ng-template>
 
 
